@@ -82,8 +82,8 @@
                         </div>
 
                         <!-- Calories -->
-                        <div class="w-auto bg-[#faf5f0] text-[#4a3f35] font-extrabold px-6 py-2 rounded-full text-sm shadow-md border border-[#e6d5b8]">
-                            {{ rand(380, 520) }} kKal
+                        <div class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-gray-800 shadow-sm">
+                            🔥 {{ $menu->calories ?? rand(380, 520) }} kKal
                         </div>
 
                     </div>

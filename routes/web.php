@@ -24,6 +24,8 @@ use App\Http\Controllers\Public\LeadController;
 Route::get('/', [LandingController::class, 'index'])->name('home');
 Route::post('/lead/submit', [LeadController::class, 'store'])->name('lead.store');
 
+
+
 // Authentication routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -51,6 +53,14 @@ Route::middleware('auth')->group(function () {
     // Permission Management routes
     Route::middleware('permission:manage_permissions')->group(function () {
         Route::resource('permissions', PermissionController::class);
+    });
+
+    // Landing Page Admin Routes
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('site-settings', \App\Http\Controllers\Admin\SiteSettingController::class);
+        Route::resource('diet-menus', \App\Http\Controllers\Admin\DietMenuController::class);
+        Route::resource('diet-programs', \App\Http\Controllers\Admin\DietProgramController::class);
+        Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
     });
 
 });

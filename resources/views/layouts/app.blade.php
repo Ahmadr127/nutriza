@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Sistem')</title>
-   @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -131,6 +132,35 @@
                         </a>
                     </li>
                     @endif
+
+                    <!-- Landing Page Management -->
+                    <li class="pt-4 pb-2">
+                        <p x-show="!sidebarCollapsed" class="px-4 text-xs font-semibold text-green-200 uppercase tracking-wider mb-2">Landing Page</p>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/site-settings') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->is('admin/site-settings*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="Global Settings">
+                            <i class="fas fa-globe w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
+                            <span x-show="!sidebarCollapsed">Global Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/diet-menus') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->is('admin/diet-menus*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="Diet Menus">
+                            <i class="fas fa-utensils w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
+                            <span x-show="!sidebarCollapsed">Diet Menus</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/diet-programs') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->is('admin/diet-programs*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="Diet Programs">
+                            <i class="fas fa-fire w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
+                            <span x-show="!sidebarCollapsed">Diet Programs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/testimonials') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->is('admin/testimonials*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="Testimonials">
+                            <i class="fas fa-comment-dots w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
+                            <span x-show="!sidebarCollapsed">Testimonials</span>
+                        </a>
+                    </li>
                 </ul>
 
             </nav>
