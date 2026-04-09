@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // Call RolePermissionSeeder first
         $this->call([
             RolePermissionSeeder::class,
+            NutrizaSeeder::class,
         ]);
 
         // Create admin user
