@@ -9,7 +9,7 @@
 <section class="relative bg-brand-50 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden clip-path-bottom">
     <div class="absolute inset-0 z-0">
         @if($hero->image)
-            <img src="{{ $hero->image }}" alt="Hero Background" class="w-full h-full object-cover object-center opacity-30 select-none">
+            <img src="{{ Storage::url($hero->image) }}" alt="Hero Background" class="w-full h-full object-cover object-center opacity-30 select-none">
         @endif
         <div class="absolute inset-0 bg-gradient-to-r from-brand-900/90 to-brand-800/60 mix-blend-multiply"></div>
     </div>
@@ -41,7 +41,7 @@
         <div class="hidden lg:block w-1/2 relative mt-12 lg:mt-0">
             <div class="absolute inset-0 bg-brand-500 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
             @if($hero->image)
-                <img src="{{ $hero->image }}" class="relative z-10 rounded-2xl shadow-2xl rotate-3 hover:rotate-0 transition duration-500 border-8 border-white object-cover h-[500px] w-full" alt="Healthy Food">
+                <img src="{{ Storage::url($hero->image) }}" class="relative z-10 rounded-2xl shadow-2xl rotate-3 hover:rotate-0 transition duration-500 border-8 border-white object-cover h-[500px] w-full" alt="Healthy Food">
             @endif
             
             <!-- Float Badges -->

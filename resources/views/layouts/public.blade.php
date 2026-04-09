@@ -9,7 +9,7 @@
     <meta name="description" content="{{ $settings['footer_description'] ?? 'Nutriza adalah katering diet sehat terpercaya.' }}">
     
     <!-- Favicon -->
-    <link rel="icon" href="{{ $settings['site_logo'] ?? '' }}">
+    <link rel="icon" href="{{ isset($settings['app_favicon']) ? Storage::url($settings['app_favicon']) : '' }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

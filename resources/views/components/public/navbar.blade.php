@@ -14,8 +14,8 @@
         <div class="flex justify-between items-center h-20">
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center gap-3">
-                @if(!empty($settings['site_logo']))
-                    <img class="h-10 w-auto rounded-full shadow-sm" src="{{ $settings['site_logo'] }}" alt="{{ $settings['site_name'] ?? 'Logo' }}">
+                @if(!empty($settings['navbar_logo']))
+                    <img class="h-10 w-auto rounded-full shadow-sm" src="{{ Storage::url($settings['navbar_logo']) }}" alt="{{ $settings['site_name'] ?? 'Logo' }}">
                 @endif
                 <a href="#" :class="scrolled ? 'text-brand-700' : 'text-white'" class="font-serif font-bold text-2xl tracking-tight transition-colors duration-300">
                     {{ $settings['site_name'] ?? 'Nutriza' }}

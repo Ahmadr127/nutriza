@@ -10,9 +10,43 @@
 
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6">
-            <form action="{{ route('admin.site-settings.store') }}" method="POST">
+            <form action="{{ route('admin.site-settings.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
+                <h3 class="text-lg font-semibold text-green-800 border-b pb-2 mb-4">Aset Merek (Branding)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Logo Website (Navbar)</label>
+                        @if(isset($settings['navbar_logo']))
+                            <img src="{{ Storage::url($settings['navbar_logo']) }}" class="w-32 h-auto mb-2 bg-gray-100 p-2 rounded">
+                        @endif
+                        <input type="file" name="navbar_logo" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ikon Aplikasi (Favicon)</label>
+                        @if(isset($settings['app_favicon']))
+                            <img src="{{ Storage::url($settings['app_favicon']) }}" class="w-12 h-12 mb-2 bg-gray-100 p-1 rounded">
+                        @endif
+                        <input type="file" name="app_favicon" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-semibold text-green-800 border-b pb-2 mb-4">Sosial Media</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Instagram (URL)</label>
+                        <input type="text" name="social_instagram" value="{{ $settings['social_instagram'] ?? 'https://instagram.com/' }}" class="w-full rounded-md border-gray-300">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">TikTok (URL)</label>
+                        <input type="text" name="social_tiktok" value="{{ $settings['social_tiktok'] ?? 'https://tiktok.com/' }}" class="w-full rounded-md border-gray-300">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Facebook (URL)</label>
+                        <input type="text" name="social_facebook" value="{{ $settings['social_facebook'] ?? 'https://facebook.com/' }}" class="w-full rounded-md border-gray-300">
+                    </div>
+                </div>
+
                 <h3 class="text-lg font-semibold text-green-800 border-b pb-2 mb-4">Kontak & Perusahaan</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <div>

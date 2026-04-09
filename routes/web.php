@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('diet-menus', \App\Http\Controllers\Admin\DietMenuController::class);
         Route::resource('diet-programs', \App\Http\Controllers\Admin\DietProgramController::class);
         Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
+        Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class);
+        Route::get('landing-hero', [\App\Http\Controllers\Admin\LandingHeroController::class, 'index'])->name('landing-hero.index');
+        Route::post('landing-hero', [\App\Http\Controllers\Admin\LandingHeroController::class, 'store'])->name('landing-hero.store');
     });
 
 });

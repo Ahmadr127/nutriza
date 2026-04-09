@@ -18,6 +18,12 @@ class SiteSettingController extends Controller
         $data = $request->except(['_token', '_method']);
 
         foreach ($data as $key => $value) {
+            if ($request->hasFile($key)) {
+                $file = $request->file($key);
+                $path = $file->store('settings', 'public');
+                $value = $path; // save path as value
+            }
+
             \App\Models\SiteSetting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Sistem')</title>
+    @php $layoutSettings = \App\Models\SiteSetting::pluck('value', 'key'); @endphp
+    <title>{{ $layoutSettings['site_name'] ?? 'Sistem' }} - @yield('title', 'Sistem')</title>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ isset($layoutSettings['app_favicon']) ? Storage::url($layoutSettings['app_favicon']) : asset('images/logo.png') }}">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -82,9 +83,9 @@
             <div class="flex items-center justify-between h-20 px-4 border-b border-green-600 flex-shrink-0">
                 <div class="flex items-center space-x-3 overflow-hidden">
                     <div class="bg-white rounded-xl border border-green-200 shadow-sm p-2 flex-shrink-0">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-8 w-auto object-contain">
+                        <img src="{{ isset($layoutSettings['navbar_logo']) ? Storage::url($layoutSettings['navbar_logo']) : asset('images/logo.png') }}" alt="Logo" class="h-8 w-auto object-contain">
                     </div>
-                    <h1 x-show="!sidebarCollapsed" class="text-xl font-bold text-white tracking-wide truncate">Sistem</h1>
+                    <h1 x-show="!sidebarCollapsed" class="text-xl font-bold text-white tracking-wide truncate">{{ $layoutSettings['site_name'] ?? 'Sistem' }}</h1>
                 </div>
                 
             </div>
@@ -144,6 +145,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.landing-hero.index') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->routeIs('admin.landing-hero.*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="Hero Section">
+                            <i class="fas fa-image w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
+                            <span x-show="!sidebarCollapsed">Hero Section</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('admin/diet-menus') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->is('admin/diet-menus*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="Diet Menus">
                             <i class="fas fa-utensils w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
                             <span x-show="!sidebarCollapsed">Diet Menus</span>
@@ -159,6 +166,12 @@
                         <a href="{{ url('admin/testimonials') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->is('admin/testimonials*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="Testimonials">
                             <i class="fas fa-comment-dots w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
                             <span x-show="!sidebarCollapsed">Testimonials</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/faqs') }}" class="flex items-center px-4 py-2.5 text-white rounded-lg hover:bg-green-800 transition-colors {{ request()->is('admin/faqs*') ? 'bg-green-800' : '' }}" :class="sidebarCollapsed ? 'justify-center' : ''" title="FAQs">
+                            <i class="fas fa-question-circle w-5" :class="sidebarCollapsed ? '' : 'mr-3'"></i>
+                            <span x-show="!sidebarCollapsed">FAQs</span>
                         </a>
                     </li>
                 </ul>
