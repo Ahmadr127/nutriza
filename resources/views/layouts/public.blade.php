@@ -8,6 +8,20 @@
     <!-- Meta SEO -->
     <meta name="description" content="{{ $settings['footer_description'] ?? 'Nutriza adalah katering diet sehat terpercaya.' }}">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $settings['site_name'] ?? 'Nutriza' }} | Katering Diet Sehat Terpercaya">
+    <meta property="og:description" content="{{ $settings['footer_description'] ?? 'Nutriza adalah katering diet sehat terpercaya.' }}">
+    <meta property="og:image" content="{{ isset($hero) && $hero->image ? (filter_var($hero->image, FILTER_VALIDATE_URL) ? $hero->image : Storage::url($hero->image)) : (isset($settings['navbar_logo']) ? Storage::url($settings['navbar_logo']) : '') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $settings['site_name'] ?? 'Nutriza' }} | Katering Diet Sehat Terpercaya">
+    <meta property="twitter:description" content="{{ $settings['footer_description'] ?? 'Nutriza adalah katering diet sehat terpercaya.' }}">
+    <meta property="twitter:image" content="{{ isset($hero) && $hero->image ? (filter_var($hero->image, FILTER_VALIDATE_URL) ? $hero->image : Storage::url($hero->image)) : (isset($settings['navbar_logo']) ? Storage::url($settings['navbar_logo']) : '') }}">
+    
     <!-- Favicon -->
     <link rel="icon" href="{{ isset($settings['app_favicon']) ? Storage::url($settings['app_favicon']) : '' }}">
 
