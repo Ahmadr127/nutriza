@@ -18,9 +18,11 @@ use App\Http\Controllers\PermissionController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/login');
-});
+use App\Http\Controllers\Public\LandingController;
+use App\Http\Controllers\Public\LeadController;
+
+Route::get('/', [LandingController::class, 'index'])->name('home');
+Route::post('/lead/submit', [LeadController::class, 'store'])->name('lead.store');
 
 // Authentication routes
 Route::middleware('guest')->group(function () {
